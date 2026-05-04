@@ -2,8 +2,6 @@ async function searchSongs(query) {
     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
     const data = await response.json();
 
-    console.log("SEARCH DATA:", data);
-
     const matchesContainer = document.getElementById('matches-container');
     matchesContainer.innerHTML = '';
     matchesContainer.hidden = false;
@@ -13,11 +11,8 @@ async function searchSongs(query) {
     tracks.forEach(track => {
         const div = document.createElement('div');
         div.classList.add('match-item');
-
         div.textContent = `${track.name} – ${track.artists[0].name}`;
-
         div.addEventListener('click', () => selectTrack(track));
-
         matchesContainer.appendChild(div);
     });
 }
@@ -29,7 +24,6 @@ document.getElementById('search-button').addEventListener('click', () => {
     searchSongs(query);
 });
 
-// press Enter to search
 document.getElementById('search-input').addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         const query = e.target.value.trim();
@@ -38,11 +32,11 @@ document.getElementById('search-input').addEventListener('keydown', (e) => {
 });
 
 function selectTrack(track) {
-    document.getElementById('song-details').hidden = false;
+    setImage(track.album.images[0].url, track);
 
+    document.getElementById('song-details').hidden = false;
     document.getElementById('cover-image').src =
         track.album.images[0]?.url || '';
-
     document.getElementById('song-title').textContent = track.name;
     document.getElementById('artist-name').textContent =
         track.artists[0].name;
