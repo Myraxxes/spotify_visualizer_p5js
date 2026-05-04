@@ -17,6 +17,16 @@ async function searchSongs(query) {
     });
 }
 
+// Helper function for song duration
+function formatDuration(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000)
+        .toString()
+        .padStart(2, '0');
+
+    return `${minutes}:${seconds}`;
+}
+
 document.getElementById('search-button').addEventListener('click', () => {
     const query = document.getElementById('search-input').value.trim();
     if (!query) return;
@@ -40,4 +50,6 @@ function selectTrack(track) {
     document.getElementById('song-title').textContent = track.name;
     document.getElementById('artist-name').textContent =
         track.artists[0].name;
+    document.getElementById('song-duration').textContent =
+        formatDuration(track.duration_ms);
 }

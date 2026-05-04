@@ -13,7 +13,7 @@ const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// TOKEN LOGIC
+// Token logic
 let appAccessToken = null;
 let tokenExpiresAt = 0;
 
@@ -46,7 +46,7 @@ async function getAppToken() {
   return appAccessToken;
 }
 
-// SEARCH
+// Search
 app.get('/api/search', async (req, res) => {
   const query = req.query.q;
 
@@ -78,7 +78,7 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-// START SERVER
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://127.0.0.1:${PORT}`);
 });
