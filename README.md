@@ -2,7 +2,7 @@
 
 An interactive web-based visualizer that transforms Spotify album covers into animated glitch-style artwork.
 
-Users can search for a song, select it, and watch its album cover evolve into a dynamic visual generated using distortion, noise, and color effects.
+Users can search for a song, select it, and see its album cover transform into a dynamic visual made with distortion, noise, and shifting colors.
 
 
 ## Demo
